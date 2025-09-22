@@ -8,42 +8,48 @@
 </head>
 
 <body>
-    <h2>Calculadora básica</h2>
-    <form>
-        <label for="num1">Informe o 1º número</label>
-        <input id="num1" type="number"><br><br>
-        <label for="num2">Informe o 2º número</label>
-        <input id="num2" type="number"> <br><br>
-        <button type="button" onclick="calcular ('somar')">Somar</button>
-        <button type="button" onclick="calcular ('dividir')">Dividir</button>
-        <button type="button" onclick="calcular ('multi')">Multiplicar</button>
-        <button type="button" onclick="calcular ('sub')">Subtrair</button>
-    </form>
-    <h4>Resultado: </h4>
-    <div id="resultado"></div>
+    <div class="calculator-container">
+        <h2>Calculadora básica</h2>
+        <form>
+            <label for="num1">Informe o 1º número</label>
+            <input id="num1" type="number"><br><br>
+            <label for="num2">Informe o 2º número</label>
+            <input id="num2" type="number"> <br><br>
+            <button type="button" onclick="calcular ('somar')">Somar</button>
+            <button type="button" onclick="calcular ('dividir')">Dividir</button>
+            <button type="button" onclick="calcular ('multi')">Multiplicar</button>
+            <button type="button" onclick="calcular ('sub')">Subtrair</button>
+        </form>
+        <h4>Resultado: </h4>
+        <div id="resultado"></div>
+    </div>
     <script>
         function calcular(operacao) {
             //Pegar os valores do formulário
             let num1 = parseFloat(document.getElementById('num1').value);
             let num2 = parseFloat(document.getElementById('num2').value);
-            //Realiza os calculos
-            switch (operacao) {
-                case 'somar':
-                    resultado = num1 + num2;
-                    break;
-                case 'dividir':
-                    if (num2 != 0) {
-                        resultado = num1 / num2;
-                    } else {
-                        resultado = "Não é possível dividir um número por ZERO"
-                    }
-                    break;
-                case 'multi':
-                    resultado = num1 * num2;
-                    break;
-                case 'sub':
-                    resultado = num1 - num2;
-                    break;
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado = "Insira um número...";
+            } else {
+                //Realiza os calculos
+                switch (operacao) {
+                    case 'somar':
+                        resultado = num1 + num2;
+                        break;
+                    case 'dividir':
+                        if (num2 != 0) {
+                            resultado = num1 / num2;
+                        } else {
+                            resultado = "Não é possível dividir um número por ZERO"
+                        }
+                        break;
+                    case 'multi':
+                        resultado = num1 * num2;
+                        break;
+                    case 'sub':
+                        resultado = num1 - num2;
+                        break;
+                }
             }
             document.getElementById('resultado').textContent = resultado;
         }
